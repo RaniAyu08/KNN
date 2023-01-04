@@ -24,8 +24,17 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Algoritma KNN
+Algoritma Nearest Neighbor Retrieval (K-Nearest Neighbor atau K-NN) adalah
+sebuah algoritma untuk melakukan klasifikasi terhadap objek dengan data pembelajaran yang jaraknya paling dekat dengan objek tersebut. Kasus khusus di mana
+klasifikasi diprediksikan berdasarkan data pembelajaran yang paling dekat (dengan
+kata lain, k = 1) disebut algoritma Nearest Neighbor.
 
 # Tahapan Algoritma KNN
+1. Menyiapkan Dataset
+2. Menentukan Nilai K
+3. Menghitung jarak antara data trining dan data testing (Euclidean Distance)
+4. Mengurutkan data berdasarkan jarak terkecil (Rank)
+5. Mengelompokkan data
 
 # Eksperimen Algoritma KNN
 
@@ -85,3 +94,5 @@ confusionMatrix(knnPredict, testing$Species )
 mean(knnPredict == testing$Species)
 ```
 
+# Referensi
+https://rpubs.com/arikunc0r0/kNNwithCaret

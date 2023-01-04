@@ -253,9 +253,17 @@ text-align: justify}
 </style>
 <div id="algoritma-knn" class="section level1">
 <h1>Algoritma KNN</h1>
+<p>Algoritma Nearest Neighbor Retrieval (K-Nearest Neighbor atau K-NN) adalah sebuah algoritma untuk melakukan klasifikasi terhadap objek dengan data pembelajaran yang jaraknya paling dekat dengan objek tersebut. Kasus khusus di mana klasifikasi diprediksikan berdasarkan data pembelajaran yang paling dekat (dengan kata lain, k = 1) disebut algoritma Nearest Neighbor.</p>
 </div>
 <div id="tahapan-algoritma-knn" class="section level1">
 <h1>Tahapan Algoritma KNN</h1>
+<ol style="list-style-type: decimal">
+<li>Menyiapkan Dataset</li>
+<li>Menentukan Nilai K</li>
+<li>Menghitung jarak antara data trining dan data testing (Euclidean Distance)</li>
+<li>Mengurutkan data berdasarkan jarak terkecil (Rank)</li>
+<li>Mengelompokkan data</li>
+</ol>
 </div>
 <div id="eksperimen-algoritma-knn" class="section level1">
 <h1>Eksperimen Algoritma KNN</h1>
@@ -382,6 +390,10 @@ confusionMatrix(knnPredict, testing$Species )</code></pre>
 <pre class="r"><code>mean(knnPredict == testing$Species)</code></pre>
 <pre><code>## [1] 0.9444444</code></pre>
 </div>
+</div>
+<div id="referensi" class="section level1">
+<h1>Referensi</h1>
+<p><a href="https://rpubs.com/arikunc0r0/kNNwithCaret" class="uri">https://rpubs.com/arikunc0r0/kNNwithCaret</a></p>
 </div>
 
 
