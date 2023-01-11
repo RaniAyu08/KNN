@@ -31,14 +31,15 @@ kata lain, k = 1) disebut algoritma Nearest Neighbor.
 
 # Tahapan Algoritma KNN
 1. Menyiapkan Dataset
-2. Menentukan Nilai K
-3. Menghitung jarak antara data trining dan data testing (Euclidean Distance)
-4. Mengurutkan data berdasarkan jarak terkecil (Rank)
-5. Mengelompokkan data
+2. Mengubah dataset menjadi training dan testing
+3. sebelum pemprosesan
+4. training dan train control
 
 # Eksperimen Algoritma KNN
 
 ## Library
+
+1.Menyiapkan data
 ```{r}
 library(caret)
 ```
@@ -47,6 +48,7 @@ library(caret)
 summary(iris)
 ```
 
+2.Membagi dataset menjadi training dan testing
 ```{r}
 set.seed(300)
 #Spliting data as training and test set. Using createDataPartition() function from caret. p is the percentage of data that goes to training. 
@@ -65,12 +67,14 @@ prop.table(table(testing$Species)) * 100
 prop.table(table(iris$Species)) * 100
 ```
 
+3. Sebelum pemprosesan
 ```{r}
 trainX <- training[,names(training) != "Species"]
 preProcValues <- preProcess(x = trainX,method = c("center", "scale"))
 preProcValues
 ```
 
+4.Training dan train control
 ```{r}
 set.seed(400)
 ctrl <- trainControl(method="repeatedcv",repeats = 3) #,classProbs=TRUE,summaryFunction = twoClassSummary)

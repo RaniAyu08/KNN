@@ -11,7 +11,7 @@
 
 <meta name="author" content="Rani Ayu Sukmawati-Institut Teknologi Statistika dan Bisnis Muhammadiyah" />
 
-<meta name="date" content="2023-01-04" />
+<meta name="date" content="2023-01-11" />
 
 <title>Algoritma KNN</title>
 
@@ -242,7 +242,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Algoritma KNN</h1>
 <h4 class="author">Rani Ayu Sukmawati-Institut Teknologi Statistika dan Bisnis Muhammadiyah</h4>
-<h4 class="date">2023-01-04</h4>
+<h4 class="date">2023-01-11</h4>
 
 </div>
 
@@ -259,16 +259,16 @@ text-align: justify}
 <h1>Tahapan Algoritma KNN</h1>
 <ol style="list-style-type: decimal">
 <li>Menyiapkan Dataset</li>
-<li>Menentukan Nilai K</li>
-<li>Menghitung jarak antara data trining dan data testing (Euclidean Distance)</li>
-<li>Mengurutkan data berdasarkan jarak terkecil (Rank)</li>
-<li>Mengelompokkan data</li>
+<li>Mengubah dataset menjadi training dan testing</li>
+<li>sebelum pemprosesan</li>
+<li>training dan train control</li>
 </ol>
 </div>
 <div id="eksperimen-algoritma-knn" class="section level1">
 <h1>Eksperimen Algoritma KNN</h1>
 <div id="library" class="section level2">
 <h2>Library</h2>
+<p>1.Menyiapkan data</p>
 <pre class="r"><code>library(caret)</code></pre>
 <pre><code>## Loading required package: ggplot2</code></pre>
 <pre><code>## Loading required package: lattice</code></pre>
@@ -287,6 +287,7 @@ text-align: justify}
 ##                 
 ##                 
 ## </code></pre>
+<p>2.Membagi dataset menjadi training dan testing</p>
 <pre class="r"><code>set.seed(300)
 #Spliting data as training and test set. Using createDataPartition() function from caret. p is the percentage of data that goes to training. 
 indxTrain &lt;- createDataPartition(y = iris$Species,p = 0.75,list = FALSE)
@@ -302,6 +303,9 @@ testing &lt;- iris[-indxTrain,]
 <pre><code>## 
 ##     setosa versicolor  virginica 
 ##   33.33333   33.33333   33.33333</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Sebelum pemprosesan</li>
+</ol>
 <pre class="r"><code>trainX &lt;- training[,names(training) != &quot;Species&quot;]
 preProcValues &lt;- preProcess(x = trainX,method = c(&quot;center&quot;, &quot;scale&quot;))
 preProcValues</code></pre>
@@ -311,6 +315,7 @@ preProcValues</code></pre>
 ##   - centered (4)
 ##   - ignored (0)
 ##   - scaled (4)</code></pre>
+<p>4.Training dan train control</p>
 <pre class="r"><code>set.seed(400)
 ctrl &lt;- trainControl(method=&quot;repeatedcv&quot;,repeats = 3) #,classProbs=TRUE,summaryFunction = twoClassSummary)
 knnFit &lt;- train(Species ~ ., data = training, method = &quot;knn&quot;, trControl = ctrl, preProcess = c(&quot;center&quot;,&quot;scale&quot;), tuneLength = 20)
