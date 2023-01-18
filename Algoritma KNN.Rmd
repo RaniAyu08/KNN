@@ -43,12 +43,11 @@ kata lain, k = 1) disebut algoritma Nearest Neighbor.
 ```{r}
 library(caret)
 ```
-
 ```{r}
 summary(iris)
+
 ```
 
-2.Membagi dataset menjadi training dan testing
 ```{r}
 set.seed(300)
 #Spliting data as training and test set. Using createDataPartition() function from caret. p is the percentage of data that goes to training. 
@@ -57,6 +56,7 @@ training <- iris[indxTrain,]
 testing <- iris[-indxTrain,]
 
 #Checking distibution in original data and partitioned data
+prop.table(table(training$Species)) * 100
 ```
 
 ```{r}
@@ -67,14 +67,12 @@ prop.table(table(testing$Species)) * 100
 prop.table(table(iris$Species)) * 100
 ```
 
-3. Sebelum pemprosesan
 ```{r}
 trainX <- training[,names(training) != "Species"]
 preProcValues <- preProcess(x = trainX,method = c("center", "scale"))
 preProcValues
 ```
 
-4.Training dan train control
 ```{r}
 set.seed(400)
 ctrl <- trainControl(method="repeatedcv",repeats = 3) #,classProbs=TRUE,summaryFunction = twoClassSummary)
@@ -97,6 +95,18 @@ confusionMatrix(knnPredict, testing$Species )
 ```{r}
 mean(knnPredict == testing$Species)
 ```
+
+```{r}
+plt.figure()
+sns.pairplot(dataset.drop("Id", axis=1), hue = "Species", size=3, markers=["o", "s", "D"])
+plt.show()
+```
+
+
+
+
+
+
 
 # Referensi
 https://rpubs.com/arikunc0r0/kNNwithCaret
