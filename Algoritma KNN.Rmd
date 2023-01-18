@@ -43,11 +43,13 @@ kata lain, k = 1) disebut algoritma Nearest Neighbor.
 ```{r}
 library(caret)
 ```
+2.Memeriksa ringkasan dataset
 ```{r}
 summary(iris)
 
 ```
 
+3.Membagi dataset menjadi data training dan testing
 ```{r}
 set.seed(300)
 #Spliting data as training and test set. Using createDataPartition() function from caret. p is the percentage of data that goes to training. 
@@ -59,14 +61,12 @@ testing <- iris[-indxTrain,]
 prop.table(table(training$Species)) * 100
 ```
 
+4.sebelum pemprosesan
 ```{r}
 prop.table(table(testing$Species)) * 100
 ```
 
-```{r}
-prop.table(table(iris$Species)) * 100
-```
-
+5.training dan train control
 ```{r}
 trainX <- training[,names(training) != "Species"]
 preProcValues <- preProcess(x = trainX,method = c("center", "scale"))
@@ -81,6 +81,7 @@ knnFit <- train(Species ~ ., data = training, method = "knn", trControl = ctrl, 
 knnFit
 ```
 
+5.
 ```{r}
 #Plotting yields Number of Neighbours Vs accuracy (based on repeated cross validation)
 plot(knnFit)
@@ -96,11 +97,21 @@ confusionMatrix(knnPredict, testing$Species )
 mean(knnPredict == testing$Species)
 ```
 
+Membuat Plot
 ```{r}
-plt.figure()
-sns.pairplot(dataset.drop("Id", axis=1), hue = "Species", size=3, markers=["o", "s", "D"])
-plt.show()
+x <- trees$Height
+y <- trees$Volume
 ```
+
+```{r}
+plot(trees)
+```
+
+
+
+
+
+
 
 
 
